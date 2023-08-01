@@ -81,7 +81,11 @@
 
     &-contact {
         .modal-content {
-            width: 56rem;
+            width: 56rem;            
+        }
+        .modal-body {
+            padding: 2rem;
+            background-color: rgba($color: #fff, $alpha: .5);
         }
     }
 }

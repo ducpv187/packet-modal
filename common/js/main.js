@@ -1,8 +1,35 @@
 $(document).ready(function() {
-    setTimeout(function(){
-        openModal($('#btn-1'));
-    },2000)    
+    const cookieModal = document.cookie.split('; ');
+    // console.log(cookieModal);
+    if(!cookieModal.includes('MODAL_COOKIE=yes')){        
+        setTimeout(function(){
+            openModal($('#btn-1'));
+        },1000)    
+    }    
 });
+
+$('.js-modal-cookie').click(function(){
+    closeModal($(this));
+    let timeToAdd = 1000 * 60 * 60 * 24;
+    let date = new Date();
+    let expiryTime = parseInt(date.getTime()) + timeToAdd;
+    date.setTime(expiryTime);
+    let utcTime = date.toUTCString();
+    document.cookie = "MODAL_COOKIE=yes; expires=" + utcTime + ";";
+    console.log(document.cookie);
+})
+
+$(document).on('click', '.js-modal-cookie', function(){    
+    closeModal($(this));
+    let timeToAdd = 1000 * 60 * 60 * 24;
+    let date = new Date();
+    let expiryTime = parseInt(date.getTime()) + timeToAdd;
+    console.log(expiryTime);
+    date.setTime(expiryTime);
+    let utcTime = date.toUTCString();
+    document.cookie = "MODAL_COOKIE=yes; expires=" + utcTime + ";";
+})
+
 $(document).on('click', '.js-modal-open', function(){    
     openModal($(this));
 })
